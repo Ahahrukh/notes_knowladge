@@ -2,7 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTopic, listSections } from "@/lib/queries";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 export default async function TopicPage({
   params,

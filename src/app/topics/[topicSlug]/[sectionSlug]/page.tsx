@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { getSection, getTopic, listSections } from "@/lib/queries";
 import ContentRenderer from "@/components/ContentRenderer";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 export default async function SectionPage({
   params,

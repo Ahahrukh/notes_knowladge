@@ -2,7 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTopic, listInterview } from "@/lib/queries";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 const diffColor: Record<string, string> = {
   easy: "bg-emerald-500/20 text-emerald-200 border-emerald-500/40",

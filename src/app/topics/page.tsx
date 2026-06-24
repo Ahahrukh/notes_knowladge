@@ -1,7 +1,8 @@
 import { listTopics } from "@/lib/queries";
 import TopicCard from "@/components/TopicCard";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 const learningPhases = [
   {

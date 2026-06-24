@@ -2,7 +2,8 @@ import Link from "next/link";
 import { listTopics } from "@/lib/queries";
 import TopicCard from "@/components/TopicCard";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 export default async function HomePage() {
   let topics = [] as Awaited<ReturnType<typeof listTopics>>;
