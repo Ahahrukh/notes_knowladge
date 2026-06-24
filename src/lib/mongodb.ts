@@ -3,29 +3,38 @@ import { MongoClient, Db } from "mongodb";
 const uri = process.env.MONGODB_URI;
 const dbName = process.env.MONGODB_DB || "notes_knowladge";
 
-if (!uri) {
-  throw new Error("Missing MONGODB_URI in environment");
-}
-
 declare global {
   // eslint-disable-next-line no-var
   var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
-let clientPromise: Promise<MongoClient>;
+let clientPromise: Promise<MongoClient> | undefined;
 
-if (process.env.NODE_ENV === "development") {
-  if (!global._mongoClientPromise) {
-    global._mongoClientPromise = new MongoClient(uri).connect();
+function getClientPromise(): Promise<MongoClient> {
+  if (!uri) {
+    throw new Error("Missing MONGODB_URI in environment");
   }
-  clientPromise = global._mongoClientPromise;
-} else {
-  clientPromise = new MongoClient(uri).connect();
+
+  if (process.env.NODE_ENV === "development") {
+    if (!global._mongoClientPromise) {
+      global._mongoClientPromise = new MongoClient(uri, {
+        serverSelectionTimeoutMS: 5000,
+      }).connect();
+    }
+    return global._mongoClientPromise;
+  }
+
+  if (!clientPromise) {
+    clientPromise = new MongoClient(uri, {
+      serverSelectionTimeoutMS: 5000,
+    }).connect();
+  }
+  return clientPromise;
 }
 
 export async function getDb(): Promise<Db> {
-  const client = await clientPromise;
+  const client = await getClientPromise();
   return client.db(dbName);
 }
 
-export default clientPromise;
+export default getClientPromise;
