@@ -21,12 +21,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 · Hinglish dev notes
               </span>
             </Link>
-            <nav className="flex items-center gap-4 text-sm">
+            <nav className="flex flex-wrap items-center justify-end gap-3 text-sm sm:gap-4">
               <Link href="/topics" className="text-slate-300 hover:text-white">
                 Topics
               </Link>
               <Link href="/projects" className="text-slate-300 hover:text-white">
                 Projects
+              </Link>
+              <Link
+                href="/practice-code"
+                className="text-slate-300 hover:text-white"
+              >
+                Practice Code
               </Link>
               <a
                 href="https://github.com"

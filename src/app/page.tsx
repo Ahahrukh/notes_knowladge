@@ -25,7 +25,7 @@ export default async function HomePage() {
           <strong> Hinglish</strong> me, basic se advance tak, code examples
           aur line-by-line meaning ke saath. Interview prep bhi included.
         </p>
-        <div className="mt-6 flex justify-center gap-3">
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
           <Link
             href="/topics"
             className="px-5 py-2.5 bg-brand-600 hover:bg-brand-500 text-white rounded-md font-medium"
@@ -37,6 +37,12 @@ export default async function HomePage() {
             className="px-5 py-2.5 border border-slate-700 hover:border-brand-500 text-slate-200 rounded-md font-medium"
           >
             Projects Code
+          </Link>
+          <Link
+            href="/practice-code"
+            className="px-5 py-2.5 border border-slate-700 hover:border-brand-500 text-slate-200 rounded-md font-medium"
+          >
+            Practice Code
           </Link>
         </div>
       </section>
